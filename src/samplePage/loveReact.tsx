@@ -25,7 +25,7 @@ function RevenueChart() {
 const data = {
   labels: labels,
   datasets: [{
-    label: 'Выручка (млрд.)',
+    label: 'Выручка (млрд)',
     data: [65, 59, 80, 81, 56, 55, 40],
     backgroundColor: [
       'rgba(173,255,47, 0.5)',
