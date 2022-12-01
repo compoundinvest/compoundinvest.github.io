@@ -1,14 +1,13 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import {ReasonsILoveReactPage} from './samplePage/loveReact'
+import React from "react";
+import "./App.css";
+import { InvestmentIdeasPage } from "./InvestmentIdea/InvestmentIdeasChart/InvestmentIdeasChart";
 
 function App() {
-  return (
-    <div className="App">
-      <ReasonsILoveReactPage />
-    </div>
-  );
+    return (
+        <div className="App">
+            <InvestmentIdeasPage />
+        </div>
+    );
 }
 
 export default App;
