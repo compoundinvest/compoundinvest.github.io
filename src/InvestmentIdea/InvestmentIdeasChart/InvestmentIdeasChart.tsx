@@ -23,7 +23,7 @@ function Navigation() {
     return (
         <nav className="nav">
             <ul className="navigation-items">
-                <li>Pricing</li>
+                <li>Pricing1</li>
                 <li>About</li>
                 <li>Contact</li>
             </ul>
