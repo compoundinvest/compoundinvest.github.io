@@ -1,7 +1,7 @@
 import { InvestmentIdea } from "./InvestmentIdea";
 import { Currency } from "../../Core/Entity/Currency";
 
-import ideas from "./idealist.json";
+import ideas from "./investmentideas.json";
 import { SimpleQuote } from "../../QuoteService/SimpleQuote";
 
 export function getInvestmentIdeasList(quotes: SimpleQuote[]): InvestmentIdea[] {

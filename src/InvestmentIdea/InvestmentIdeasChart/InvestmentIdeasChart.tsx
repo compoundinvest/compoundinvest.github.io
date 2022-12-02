@@ -35,12 +35,18 @@ function RevenueChart() {
     const [ideasList, updateUpsides] = useState<InvestmentIdea[]>([]);
 
     useEffect(() => {
-        const fetchQuotes = async () => {
+        const fetchMoexQuotes = async () => {
             const quotes = await fetchMOEXQuotes();
             const ideas = getInvestmentIdeasList(quotes);
             updateUpsides(ideas);
         };
-        fetchQuotes();
+
+        fetchMoexQuotes();
+    }, []);
+
+    useEffect(() => {
+        const fetchYahooQuotes = async () => {};
+        fetchYahooQuotes();
     }, []);
 
     const barLabels = ideasList.map((idea) => idea.ticker);
