@@ -36,3 +36,31 @@
     transform: rotate(360deg);
   }
 } */
+body {
+    padding: 0;
+    margin: 0;
+    background-color: rgb(245, 245, 245);
+}
+
+.siderAndContentContainer {
+    display: flex;
+}
+
+.sider {
+    overflow: "auto";
+    position: "fixed";
+    height: "calc(100% - 84px)";
+    left: 0;
+}
+
+.appContent {
+    width: calc("100% - 200px");
+    padding: "0 24px 24px";
+}
+
+.appHeader {
+    position: "sticky";
+    top: 0;
+    z-index: 1;
+    width: "100%";
+}
