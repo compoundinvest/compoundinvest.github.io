@@ -3,15 +3,15 @@ Interfaces that mimic Yahoo's response in the their V7 API that returns multiple
 E.g.: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,AMZN
 */
 
-export interface YahooQuotes {
-    quoteResponse: QuoteResponse;
+export interface YahooQuotesDTO {
+    quoteResponse: QuoteResponseDTO;
 }
 
-interface QuoteResponse {
-    result: StockOverview[];
+interface QuoteResponseDTO {
+    result: StockOverviewDTO[];
 }
 
-export interface StockOverview {
+export interface StockOverviewDTO {
     symbol: string;
     displayName: string;
     regularMarketPrice: number;

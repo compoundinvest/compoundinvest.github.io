@@ -1,8 +1,8 @@
 import { InvestmentIdea } from "./InvestmentIdea";
-import { Currency } from "../../Core/Entity/Currency";
+import { Currency } from "../../../Core/Entity/Currency";
 
 import ideas from "./investmentideas.json";
-import { SimpleQuote } from "../../QuoteService/SimpleQuote";
+import { SimpleQuote } from "../../../Core/QuoteService/SimpleQuote";
 
 export function getInvestmentIdeasList(quotes: SimpleQuote[]): InvestmentIdea[] {
     let ideaList = getLocalIdeasList();
@@ -15,15 +15,17 @@ export function getInvestmentIdeasList(quotes: SimpleQuote[]): InvestmentIdea[] 
         ideaList[i].upside = ideaList[i].calculateUpside(quote);
     }
 
-    ideaList.sort((idea1, idea2) => {
-        if (idea1.upside == null && idea2.upside == null) return 0;
-        if (idea1.upside == null && idea2.upside != null) return 1;
-        if (idea1.upside != null && idea2.upside == null) return -1;
-
-        return idea1.upside! > idea2.upside! ? -1 : 1;
-    });
+    ideaList.sort(sortInvestmentIdeas);
 
     return ideaList;
+}
+
+export function sortInvestmentIdeas(idea1: InvestmentIdea, idea2: InvestmentIdea): number {
+    if (idea1.upside == null && idea2.upside == null) return 0;
+    if (idea1.upside == null && idea2.upside != null) return 1;
+    if (idea1.upside != null && idea2.upside == null) return -1;
+
+    return idea1.upside! > idea2.upside! ? -1 : 1;
 }
 
 function getLocalIdeasList(): InvestmentIdea[] {
@@ -36,7 +38,7 @@ function getLocalIdeasList(): InvestmentIdea[] {
         const parsedIdea = new InvestmentIdea(
             ideasAuthor,
             properIdeas.values[i].ticker,
-            properIdeas.values[i].currency == "USD" ? Currency.USD : Currency.RUB,
+            properIdeas.values[i].currency === "USD" ? Currency.USD : Currency.RUB,
             properIdeas.values[i].targetPrice,
             properIdeas.values[i].risk
         );
@@ -44,4 +46,9 @@ function getLocalIdeasList(): InvestmentIdea[] {
     }
 
     return parsedIdeas;
+}
+
+export function tickersForYahooQuoteService(): string[] {
+    const allIdeas = getLocalIdeasList();
+    return allIdeas.filter((idea) => idea.currency === "USD").map((idea) => idea.ticker);
 }

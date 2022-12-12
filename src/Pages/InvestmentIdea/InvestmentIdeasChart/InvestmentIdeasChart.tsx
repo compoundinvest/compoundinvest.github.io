@@ -2,55 +2,43 @@ import React from "react";
 import "./InvestmentIdeasChart.css";
 import { Bar } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
-Chart.register(...registerables);
-import { ScriptElementKindModifier } from "typescript";
-import { fetchMOEXQuotes } from "../../QuoteService/MoexQuoteService/MoexQuoteDataProvider";
+import { fetchMOEXQuotes } from "../../../Core/QuoteService/MoexQuoteService/MoexQuoteDataProvider";
+import { fetchYahooQuotesForIdeas } from "../../../Core/QuoteService/YahooQuoteService/YahooQuoteDataProvider";
 import { useState } from "react";
 import { useEffect } from "react";
 import { InvestmentIdea } from "../Entity/InvestmentIdea";
-import { getInvestmentIdeasList } from "../Entity/InvestmentIdeaDataProvider";
+import { getInvestmentIdeasList, sortInvestmentIdeas } from "../Entity/InvestmentIdeaDataProvider";
+
+Chart.register(...registerables);
 
 export function InvestmentIdeasPage() {
-    return (
-        <div>
-            <Navigation />
-            <RevenueChart />
-        </div>
-    );
-}
-
-function Navigation() {
-    return (
-        <nav className="nav">
-            <ul className="navigation-items">
-                <li>Pricing1</li>
-                <li>About</li>
-                <li>Contact</li>
-            </ul>
-        </nav>
-    );
+    return <RevenueChart />;
 }
 
 function RevenueChart() {
-    const [ideasList, updateUpsides] = useState<InvestmentIdea[]>([]);
-
+    const [russianIdeasList, updateRussianUpsides] = useState<InvestmentIdea[]>([]);
     useEffect(() => {
         const fetchMoexQuotes = async () => {
             const quotes = await fetchMOEXQuotes();
-            const ideas = getInvestmentIdeasList(quotes);
-            updateUpsides(ideas);
+            const russianIdeas = getInvestmentIdeasList(quotes).filter((idea) => idea.currency === "RUB");
+            updateRussianUpsides(russianIdeas);
         };
 
         fetchMoexQuotes();
     }, []);
 
+    const [foreignIdeasList, updateForeignUpsides] = useState<InvestmentIdea[]>([]);
     useEffect(() => {
-        const fetchYahooQuotes = async () => {};
-        fetchYahooQuotes();
+        const fetchYahooQuotesHandler = async () => {
+            const yahooQuotes = await fetchYahooQuotesForIdeas();
+            const nonRussianIdeas = getInvestmentIdeasList(yahooQuotes).filter((idea) => idea.currency === "USD");
+            updateForeignUpsides(nonRussianIdeas);
+        };
+        fetchYahooQuotesHandler();
     }, []);
 
-    const barLabels = ideasList.map((idea) => idea.ticker);
-    const chartValues = ideasList.map((idea) => idea.upside);
+    const barLabels = [...russianIdeasList, ...foreignIdeasList].sort(sortInvestmentIdeas).map((idea) => idea.ticker);
+    const chartValues = [...russianIdeasList, ...foreignIdeasList].sort(sortInvestmentIdeas).map((idea) => idea.upside);
 
     const data = {
         labels: barLabels,
@@ -71,7 +59,7 @@ function RevenueChart() {
             },
         ],
     };
-    console.log(data);
+
     return (
         <div
             style={{

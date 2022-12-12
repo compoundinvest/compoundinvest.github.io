@@ -1,5 +1,5 @@
-import { Currency } from "../../Core/Entity/Currency";
-import { SimpleQuote } from "../../QuoteService/SimpleQuote";
+import { Currency } from "../../../Core/Entity/Currency";
+import { SimpleQuote } from "../../../Core/QuoteService/SimpleQuote";
 
 export class InvestmentIdea {
     author: string;

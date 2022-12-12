@@ -9,7 +9,7 @@ export async function fetchMOEXQuotes(): Promise<MoexQuote[]> {
 
     let quotes: MoexQuote[] = [];
     const uncastQuotes = response.data.marketdata.data;
-    if (uncastQuotes.length == 0) {
+    if (uncastQuotes.length === 0) {
         return [];
     }
 

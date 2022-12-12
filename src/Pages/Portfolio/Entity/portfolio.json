@@ -1,0 +1,101 @@
+{
+    "owner": "Robert Zak",
+    "positions": [
+        {
+            "ticker": "ETLN",
+            "lots": [
+                {
+                    "openingDate": "2020-01-01",
+                    "quantity": 77620,
+                    "openingPrice": 100,
+                    "broker": "ВТБ (ИИС)",
+                    "currency": "RUB"
+                }
+            ]
+        },
+        {
+            "ticker": "ETLN",
+            "lots": [
+                {
+                    "openingDate": "2020-01-01",
+                    "quantity": 3459,
+                    "openingPrice": 100,
+                    "broker": "Россельхоз Банк",
+                    "currency": "RUB"
+                }
+            ]
+        },
+        {
+            "ticker": "AFKS",
+            "lots": [
+                {
+                    "openingDate": "2020-01-01",
+                    "quantity": 33800,
+                    "openingPrice": 12.551,
+                    "broker": "Сбербанк",
+                    "currency": "RUB"
+                }
+            ]
+        },
+        {
+            "ticker": "HYDR",
+            "lots": [
+                {
+                    "openingDate": "2020-01-01",
+                    "quantity": 1000,
+                    "openingPrice": 0.7591,
+                    "broker": "Сбербанк",
+                    "currency": "RUB"
+                }
+            ]
+        },
+        {
+            "ticker": "EMC",
+            "lots": [
+                {
+                    "openingDate": "2020-01-01",
+                    "quantity": 883,
+                    "openingPrice": 315,
+                    "broker": "Tinkoff (Robert)",
+                    "currency": "RUB"
+                }
+            ]
+        },
+        {
+            "ticker": "EMC",
+            "lots": [
+                {
+                    "openingDate": "2020-01-01",
+                    "quantity": 978,
+                    "openingPrice": 315,
+                    "broker": "Tinkoff (Dima)",
+                    "currency": "RUB"
+                }
+            ]
+        },
+        {
+            "ticker": "VK",
+            "lots": [
+                {
+                    "openingDate": "2020-01-01",
+                    "quantity": 84,
+                    "openingPrice": 420,
+                    "broker": "Tinkoff (Dima)",
+                    "currency": "RUB"
+                }
+            ]
+        },
+        {
+            "ticker": "ETLN",
+            "lots": [
+                {
+                    "openingDate": "2020-01-01",
+                    "quantity": 630,
+                    "openingPrice": 50,
+                    "broker": "Tinkoff (Dima)",
+                    "currency": "RUB"
+                }
+            ]
+        }
+    ]
+}
