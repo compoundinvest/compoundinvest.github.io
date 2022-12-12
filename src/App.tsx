@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link, Navigate } from "react-router-dom";
 import { Layout, Menu } from "antd";
 import { PieChartOutlined } from "@ant-design/icons";
 import { PortfolioChart } from "./Pages/Portfolio/PortfolioChart";
@@ -46,6 +46,7 @@ function AppContent() {
                 }}
             >
                 <Routes>
+                    <Route path="/" element={<Navigate to="/ideas" />} />
                     <Route path="/ideas" element={<InvestmentIdeasPage />} />
                     <Route path="/portfolio" element={<PortfolioChart />} />
                     <Route path="/longcontent" element={<LongContent />} />
@@ -87,7 +88,7 @@ function SiderComponent() {
                 background: colorBgContainer,
             }}
         >
-            <Menu mode="inline" defaultSelectedKeys={["3"]} defaultOpenKeys={["sub1"]} style={{ borderRight: 0 }}>
+            <Menu mode="inline" defaultSelectedKeys={["1"]} defaultOpenKeys={["sub1"]} style={{ borderRight: 0 }}>
                 <Menu.Item key="1">
                     <PieChartOutlined />
                     <span>Ideas</span>
