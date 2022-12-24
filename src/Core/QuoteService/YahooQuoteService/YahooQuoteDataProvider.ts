@@ -1,10 +1,9 @@
 import axios from "axios";
-import { tickersForYahooQuoteService } from "../../../Pages/InvestmentIdea/Entity/InvestmentIdeaDataProvider";
 import { YahooQuote } from "./Entity/YahooQuote";
 import { YahooQuotesDTO, StockOverviewDTO } from "./Entity/YahooQuotes";
 
 export async function fetchYahooQuotesForIdeas(): Promise<YahooQuote[]> {
-    const tickerList = tickersForYahooQuoteService();
+    const tickerList: string[] = [];
     const quotes = await fetchYahooQuotes(tickerList);
     return quotes;
 }

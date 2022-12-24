@@ -30,8 +30,8 @@ function AppContent() {
         token: { colorBgContainer },
     } = theme.useToken();
     return (
-        <Layout style={{ padding: "0 24px 24px", marginLeft: "200px", marginTop: "64px" }}>
-            <Breadcrumb style={{ margin: "16px 0" }}>
+        <Layout style={{ padding: "0 24px 24px", marginLeft: "200px", marginTop: "64px", position: "sticky", top: 64 }}>
+            <Breadcrumb style={{ margin: "16px 0", position: "sticky", top: 64 }}>
                 <Breadcrumb.Item>Home</Breadcrumb.Item>
                 <Breadcrumb.Item>List</Breadcrumb.Item>
                 <Breadcrumb.Item>App</Breadcrumb.Item>

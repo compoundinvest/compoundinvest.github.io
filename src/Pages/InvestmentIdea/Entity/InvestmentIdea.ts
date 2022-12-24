@@ -1,6 +1,18 @@
 import { Currency } from "../../../Core/Entity/Currency";
 import { SimpleQuote } from "../../../Core/QuoteService/SimpleQuote";
 
+export interface InvestmentIdeasDTO {
+    author: string;
+    ideas: InvestmentIdeaDTO[];
+}
+
+export interface InvestmentIdeaDTO {
+    ticker: string;
+    targetPrice: number;
+    currency: string;
+    upside: number;
+}
+
 export class InvestmentIdea {
     author: string;
     ticker: string;
@@ -11,29 +23,30 @@ export class InvestmentIdea {
     openingDate?: Date;
     risk?: string;
     investmentThesis?: string;
-    upside?: number;
+    upside: number;
 
     constructor(
         author: string,
         ticker: string,
         currency: Currency,
         targetPrice: number,
-        risk: string,
-        priceOnOpening?: number,
-        openingDate?: Date,
-        investmentThesis?: string,
-        companyName?: string,
-        upside?: number
+        // risk: string,
+        // priceOnOpening?: number,
+        // openingDate?: Date,
+        // investmentThesis?: string,
+        // companyName?: string,
+        upside: number
     ) {
         this.author = author;
         this.ticker = ticker;
         this.currency = currency;
         this.targetPrice = targetPrice;
-        this.priceOnOpening = priceOnOpening;
-        this.openingDate = openingDate;
-        this.risk = risk;
-        this.companyName = companyName;
-        this.investmentThesis = investmentThesis;
+        this.upside = upside;
+        // this.priceOnOpening = priceOnOpening;
+        // this.openingDate = openingDate;
+        // this.risk = risk;
+        // this.companyName = companyName;
+        // this.investmentThesis = investmentThesis;
     }
 
     calculateUpside(currentQuote: SimpleQuote): number | undefined {
@@ -45,5 +58,15 @@ export class InvestmentIdea {
 
         const upsideAsPercentage = upside * 100;
         return upsideAsPercentage;
+    }
+
+    static initFrom(dto: InvestmentIdeaDTO, author: string): InvestmentIdea {
+        return new InvestmentIdea(
+            author,
+            dto.ticker,
+            dto.currency === "USD" ? Currency.USD : Currency.RUB,
+            dto.targetPrice,
+            dto.upside
+        );
     }
 }

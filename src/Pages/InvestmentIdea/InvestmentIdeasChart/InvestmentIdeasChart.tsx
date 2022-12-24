@@ -7,7 +7,7 @@ import { fetchYahooQuotesForIdeas } from "../../../Core/QuoteService/YahooQuoteS
 import { useState } from "react";
 import { useEffect } from "react";
 import { InvestmentIdea } from "../Entity/InvestmentIdea";
-import { getInvestmentIdeasList, sortInvestmentIdeas } from "../Entity/InvestmentIdeaDataProvider";
+import { fetchInvestmentIdeasList, sortInvestmentIdeas } from "../Entity/InvestmentIdeaDataProvider";
 
 Chart.register(...registerables);
 
@@ -16,29 +16,17 @@ export function InvestmentIdeasPage() {
 }
 
 function RevenueChart() {
-    const [russianIdeasList, updateRussianUpsides] = useState<InvestmentIdea[]>([]);
+    const [investmentIdeas, updateIdeas] = useState<InvestmentIdea[]>([]);
     useEffect(() => {
-        const fetchMoexQuotes = async () => {
-            const quotes = await fetchMOEXQuotes();
-            const russianIdeas = getInvestmentIdeasList(quotes).filter((idea) => idea.currency === "RUB");
-            updateRussianUpsides(russianIdeas);
+        const fetchIdeas = async () => {
+            const ideasList = await fetchInvestmentIdeasList();
+            updateIdeas(ideasList);
         };
-
-        fetchMoexQuotes();
+        fetchIdeas();
     }, []);
 
-    const [foreignIdeasList, updateForeignUpsides] = useState<InvestmentIdea[]>([]);
-    useEffect(() => {
-        const fetchYahooQuotesHandler = async () => {
-            const yahooQuotes = await fetchYahooQuotesForIdeas();
-            const nonRussianIdeas = getInvestmentIdeasList(yahooQuotes).filter((idea) => idea.currency === "USD");
-            updateForeignUpsides(nonRussianIdeas);
-        };
-        fetchYahooQuotesHandler();
-    }, []);
-
-    const barLabels = [...russianIdeasList, ...foreignIdeasList].sort(sortInvestmentIdeas).map((idea) => idea.ticker);
-    const chartValues = [...russianIdeasList, ...foreignIdeasList].sort(sortInvestmentIdeas).map((idea) => idea.upside);
+    const barLabels = investmentIdeas.sort(sortInvestmentIdeas).map((idea) => idea.ticker);
+    const chartValues = investmentIdeas.sort(sortInvestmentIdeas).map((idea) => idea.upside);
 
     const data = {
         labels: barLabels,
