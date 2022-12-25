@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes, Link, Navigate } from "react-router-dom";
+import { HashRouter, Route, Routes, Link, Navigate } from "react-router-dom";
 import { Layout, Menu } from "antd";
 import { PieChartOutlined } from "@ant-design/icons";
 import { PortfolioChart } from "./Pages/Portfolio/PortfolioChart";
@@ -11,7 +11,7 @@ const { Header, Content, Sider } = Layout;
 
 export function App() {
     return (
-        <Router>
+        <HashRouter>
             <Layout>
                 <HeaderComponent />
                 <Layout hasSider>
@@ -19,7 +19,7 @@ export function App() {
                     <AppContent />
                 </Layout>
             </Layout>
-        </Router>
+        </HashRouter>
     );
 }
 
