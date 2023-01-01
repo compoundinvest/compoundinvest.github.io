@@ -29,6 +29,7 @@ function AppContent() {
     const {
         token: { colorBgContainer },
     } = theme.useToken();
+
     return (
         <Layout style={{ padding: "0 24px 24px", marginLeft: "200px", marginTop: "64px", position: "sticky", top: 64 }}>
             <Breadcrumb style={{ margin: "16px 0", position: "sticky", top: 64 }}>
