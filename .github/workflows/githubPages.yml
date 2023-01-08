@@ -12,19 +12,18 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-          - name: Checkout
-            uses: actions/checkout@v3
-          - name: Install packages
-            run: npm i -f
-          - name: NPM fix
-            run: npm audit fix
-          - name: Install dependencies
-            run: npm ci
+            - name: Checkout
+              uses: actions/checkout@v3
+            # - name: Install packages
+            #   run: npm i -f
+            - name: Install dependencies
+              run: npm ci
+            - name: Fix stuff
+              run: npm audit fix --force
+            - name: NPM fix
+              run: npm audit fix
 
-#           - name: Rebuild the dist/ directory
-#             run: npm run build
-          - name: Deploy
-            run: npm run deploy
-
-            
-            
+            #           - name: Rebuild the dist/ directory
+            #             run: npm run build
+            - name: Deploy
+              run: npm run deploy
