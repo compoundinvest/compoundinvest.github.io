@@ -13,6 +13,7 @@ export async function fetchInvestmentIdeasList(): Promise<InvestmentIdea[]> {
         const parsedIdea = InvestmentIdea.initFrom(ideasResponse.data.ideas[i], author);
         parsedIdeas.push(parsedIdea);
     }
+
     return parsedIdeas.sort(sortInvestmentIdeas);
 }
 
