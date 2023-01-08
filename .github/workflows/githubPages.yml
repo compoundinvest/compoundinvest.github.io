@@ -17,14 +17,8 @@ jobs:
             # - name: Install packages
             #   run: npm i -f
             - name: Install dependencies
-              run: |
-                npm ci
-            - name: Fix stuff
-              run: npm audit fix --force
-            - name: NPM fix
+              run: npm ci
+            - name: NPM audit fix
               run: npm audit fix
-
-            #           - name: Rebuild the dist/ directory
-            #             run: npm run build
             - name: Deploy
               run: npm run deploy
