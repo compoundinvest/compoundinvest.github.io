@@ -11,7 +11,6 @@
         "antd": "^5.0.3",
         "axios": "~0.27.2",
         "chart.js": "^4.0.1",
-        "fsevents": "^2.3.2",
         "react-chartjs-2": "~5.0.1",
         "react-router-dom": "^6.4.5",
         "react-scripts": "^5.0.1",
@@ -54,6 +53,9 @@
         "chartjs-plugin-autocolors": "^0.0.9",
         "chartjs-plugin-autocolors-typescript": "^0.0.8",
         "gh-pages": "^4.0.0"
+    },
+    "optionalDependencies": {
+        "fsevents": "^2.3.2"
     },
     "homepage": "https://rzakiev.github.io"
 }
