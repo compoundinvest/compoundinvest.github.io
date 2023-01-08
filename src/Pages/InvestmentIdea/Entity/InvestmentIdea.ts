@@ -11,6 +11,7 @@ export interface InvestmentIdeaDTO {
     targetPrice: number;
     currency: string;
     upside: number;
+    thesis?: string;
 }
 
 export class InvestmentIdea {
@@ -21,8 +22,7 @@ export class InvestmentIdea {
     targetPrice: number;
     priceOnOpening?: number;
     openingDate?: Date;
-    risk?: string;
-    investmentThesis?: string;
+    thesis?: string;
     upside: number;
 
     constructor(
@@ -30,23 +30,15 @@ export class InvestmentIdea {
         ticker: string,
         currency: Currency,
         targetPrice: number,
-        // risk: string,
-        // priceOnOpening?: number,
-        // openingDate?: Date,
-        // investmentThesis?: string,
-        // companyName?: string,
-        upside: number
+        upside: number,
+        thesis?: string
     ) {
         this.author = author;
         this.ticker = ticker;
         this.currency = currency;
         this.targetPrice = targetPrice;
         this.upside = upside;
-        // this.priceOnOpening = priceOnOpening;
-        // this.openingDate = openingDate;
-        // this.risk = risk;
-        // this.companyName = companyName;
-        // this.investmentThesis = investmentThesis;
+        this.thesis = thesis;
     }
 
     calculateUpside(currentQuote: SimpleQuote): number | undefined {
@@ -66,7 +58,8 @@ export class InvestmentIdea {
             dto.ticker,
             dto.currency === "USD" ? Currency.USD : Currency.RUB,
             dto.targetPrice,
-            dto.upside
+            dto.upside,
+            dto.thesis
         );
     }
 }

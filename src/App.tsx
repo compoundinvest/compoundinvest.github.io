@@ -1,13 +1,17 @@
 import React from "react";
 import { HashRouter, Route, Routes, Link, Navigate } from "react-router-dom";
 import { Layout, Menu } from "antd";
-import { PieChartOutlined } from "@ant-design/icons";
+import { BarChartOutlined } from "@ant-design/icons";
+
 import { PortfolioChart } from "./Pages/Portfolio/PortfolioChart";
 import { InvestmentIdeasPage } from "./Pages/InvestmentIdea/InvestmentIdeasChart/InvestmentIdeasChart";
 import "./App.css";
-import { MenuProps, Breadcrumb, theme } from "antd";
+import { Breadcrumb, theme } from "antd";
 
-const { Header, Content, Sider } = Layout;
+import { MenuProps } from "antd";
+const { Header } = Layout;
+
+const { Content, Sider } = Layout;
 
 export function App() {
     return (
@@ -33,9 +37,8 @@ function AppContent() {
     return (
         <Layout style={{ padding: "0 24px 24px", marginLeft: "200px", marginTop: "64px", position: "sticky", top: 64 }}>
             <Breadcrumb style={{ margin: "16px 0", position: "sticky", top: 64 }}>
-                <Breadcrumb.Item>Home</Breadcrumb.Item>
-                <Breadcrumb.Item>List</Breadcrumb.Item>
-                <Breadcrumb.Item>App</Breadcrumb.Item>
+                <Breadcrumb.Item>Идеи</Breadcrumb.Item>
+                <Breadcrumb.Item>Malishok</Breadcrumb.Item>
             </Breadcrumb>
 
             <Content
@@ -57,22 +60,31 @@ function AppContent() {
     );
 }
 
-function HeaderComponent() {
-    const items1: MenuProps["items"] = ["1", "2", "3"].map((key) => ({
+export function HeaderComponent() {
+    function headerSectionTitleFor(key: string): string {
+        switch (key) {
+            case "ideas":
+                return "Идеи";
+            default:
+                return key;
+        }
+    }
+    const items1: MenuProps["items"] = ["ideas"].map((key) => ({
         key,
-        label: `nav ${key}`,
+        label: headerSectionTitleFor(key),
     }));
+
     return (
         <Header style={{ position: "fixed", top: 0, zIndex: 1, width: "100%" }}>
-            <div className="logo" />
-            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]} items={items1} />
+            <img src="headerLogo.png" alt="Website's logo" className="logo" />
+            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["ideas"]} items={items1} />
         </Header>
     );
 }
 
 function LongContent() {
     const thousandParagraphs = Array.from(Array(1000).keys()).map((i) => <p>i</p>);
-    return <div>{thousandParagraphs}</div>;
+    return <div style={{ position: "sticky", top: 84 }}>{thousandParagraphs}</div>;
 }
 
 function SiderComponent() {
@@ -91,11 +103,11 @@ function SiderComponent() {
         >
             <Menu mode="inline" defaultSelectedKeys={["1"]} defaultOpenKeys={["sub1"]} style={{ borderRight: 0 }}>
                 <Menu.Item key="1">
-                    <PieChartOutlined />
-                    <span>Ideas</span>
+                    <BarChartOutlined />
+                    <span>Malishok</span>
                     <Link to="/ideas" />{" "}
                 </Menu.Item>{" "}
-                <Menu.Item key="2">
+                {/* <Menu.Item key="2">
                     <PieChartOutlined />
                     <span>Portfolio</span>
                     <Link to="/portfolio" />{" "}
@@ -104,7 +116,7 @@ function SiderComponent() {
                     <PieChartOutlined />
                     <span>Long Content</span>
                     <Link to="/longcontent" />{" "}
-                </Menu.Item>
+                </Menu.Item> */}
             </Menu>
         </Sider>
     );
