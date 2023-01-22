@@ -70,7 +70,8 @@ function RevenueChart() {
 
             const th = document.createElement("th");
             th.style.borderWidth = String(0);
-            const text = document.createTextNode(currentIdea.companyName);
+            const headerText = currentIdea.companyName === undefined ? currentIdea.ticker : currentIdea.companyName;
+            const text = document.createTextNode(headerText);
 
             th.appendChild(text);
             tr.appendChild(th);
